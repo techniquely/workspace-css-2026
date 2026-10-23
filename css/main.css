@@ -1,0 +1,113 @@
+/* ------------------------------
+   Global Variables
+--------------------------------- */
+:root {
+  --color-bg-body: #87cefa;
+  --color-board-frame: hsl(27, 63%, 35%);
+  --img-board: url('../img/water.webp');
+  --img-card-front: url('../img/BACK.png');
+  --img-card-back: url('../img/Normal_bg.webp');
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+  background-color: var(--color-bg-body);
+  font-family: Arial, sans-serif;
+}
+
+
+#zen-garden-text {
+  display: none;
+}
+
+
+.board {
+  width: 980px;
+  height: 580px;
+  margin: 40px auto;
+
+  background-image: var(--img-board);
+  background-size: cover;
+  background-position: center;
+
+  border: 8px solid var(--color-board-frame);
+  border-radius: 4px;
+
+  transform: perspective(900px) rotateX(20deg);
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
+  padding: 20px;
+
+  justify-items: center;
+  align-items: center;
+}
+
+.board ~ * {
+  display: none;
+}
+
+
+.card {
+  width: 150px;
+  height: 200px;
+
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease;
+
+  cursor: pointer;
+}
+
+
+.card-front,
+.card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 8px;
+}
+
+
+.card-front {
+  background-image: var(--img-card-front);
+  background-size: cover;
+  background-position: center;
+}
+
+.card-back {
+  background-image: var(--img-card-back);
+  background-size: cover;
+  background-position: center;
+
+  transform: rotateY(180deg);
+
+  padding: 10px;
+  font-size: 14px;
+  color: #fff;
+  text-shadow: 1px 1px 2px black;
+
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+
+.card:hover {
+  transform: rotateY(180deg);
+}
+
+.card:hover .card-back {
+  opacity: 1;
+}
